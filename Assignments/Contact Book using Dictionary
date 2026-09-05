@@ -1,0 +1,29 @@
+contacts = {}
+
+def add_contact(name, phone):
+    contacts[name] = phone
+    print(f"Added {name}.")
+
+def search_contact(name):
+    print(f"Search Result for {name}: {contacts.get(name, 'Not found')}")
+
+def update_contact(name, phone):
+    if name in contacts:
+        contacts[name] = phone
+        print(f"Updated {name}'s contact.")
+    else:
+        print("Contact does not exist.")
+
+def delete_contact(name):
+    if contacts.pop(name, None):
+        print(f"Deleted {name}.")
+    else:
+        print("Contact not found.")
+
+
+add_contact("Rahul", "9876543210")
+add_contact("Priya", "9123456789")
+search_contact("Rahul")
+update_contact("Rahul", "9999999999")
+delete_contact("Priya")
+print("Current Contacts:", contacts)

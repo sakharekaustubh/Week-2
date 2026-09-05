@@ -1,0 +1,55 @@
+import csv
+import os
+
+FILE_NAME = "students.csv"
+
+if not os.path.exists(FILE_NAME):
+    with open(FILE_NAME, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["Roll Number", "Name", "Marks"])
+
+def add_student(roll_no, name, marks):
+    with open(FILE_NAME, "a", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([roll_no, name, marks])
+    print(f"Student {name} added successfully.")
+
+def search_student(roll_no):
+    found = False
+    with open(FILE_NAME, "r") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["Roll Number"] == str(roll_no):
+                print(f"Found Student -> Roll: {row['Roll Number']}, Name: {row['Name']}, Marks: {row['Marks']}")
+                found = True
+                break
+    if not found:
+        print("Student not found.")
+
+def delete_student(roll_no):
+    rows = []
+    deleted = False
+    
+    with open(FILE_NAME, "r") as f:
+        reader = csv.reader(f)
+        headers = next(reader)
+        for row in reader:
+            if row and row[0] != str(roll_no):
+                rows.append(row)
+            else:
+                deleted = True
+
+    if deleted:
+        with open(FILE_NAME, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(headers)
+            writer.writerows(rows)
+        print(f"Student with Roll Number {roll_no} deleted successfully.")
+    else:
+        print("Roll number not found.")
+
+
+add_student("101", "Aman", "92")
+add_student("102", "Sneha", "95")
+search_student("101")
+delete_student("101")

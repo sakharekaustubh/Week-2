@@ -1,0 +1,19 @@
+filename = "sample.txt"
+
+with open(filename, "w") as f:
+    f.write("Hello world!\nWelcome to Python programming.\nData structures and file I/O.")
+
+lines_count = 0
+words_count = 0
+chars_count = 0
+
+with open(filename, "r") as f:
+    for line in f:
+        lines_count += 1
+        chars_count += len(line)
+        words = line.split()
+        words_count += len(words)
+
+print(f"Lines: {lines_count}")
+print(f"Words: {words_count}")
+print(f"Characters: {chars_count}")

@@ -1,0 +1,18 @@
+import json
+
+data = {
+    "course": "Python Full Course",
+    "students_enrolled": 1500,
+    "modules": ["Loops", "Data Structures", "OOPS", "File I/O"]
+}
+
+# Write JSON data to a file
+with open("course_data.json", "w") as f:
+    json.dump(data, f, indent=4)
+
+# Read JSON data and print formatted output
+with open("course_data.json", "r") as f:
+    loaded_data = json.load(f)
+
+print("Formatted JSON Output:\n")
+print(json.dumps(loaded_data, indent=4))

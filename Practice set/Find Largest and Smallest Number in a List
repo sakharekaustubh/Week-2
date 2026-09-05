@@ -1,0 +1,19 @@
+numbers = [45, 12, 89, 3, 67, 24]
+
+
+smallest = min(numbers)
+largest = max(numbers)
+
+print(f"Smallest: {smallest}, Largest: {largest}")
+
+
+min_val = numbers[0]
+max_val = numbers[0]
+
+for num in numbers:
+    if num < min_val:
+        min_val = num
+    if num > max_val:
+        max_val = num
+
+print(f"Manual check -> Smallest: {min_val}, Largest: {max_val}")
